@@ -4,6 +4,8 @@ sudo apt-get update
 sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
+echo "Holberton School" > /data/web_static/releases/test/index.html
+
 printf %s "server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -25,4 +27,4 @@ printf %s "server {
 }" > /etc/nginx/sites-available/default
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
-sudo service nginx start
+sudo service nginx restart
