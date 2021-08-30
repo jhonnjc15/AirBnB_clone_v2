@@ -4,10 +4,11 @@
 # using the function deploy
 
 import os.path
+from datetime import datetime
 from fabric.api import env
 from fabric.api import put
 from fabric.api import run
-from fabric.api import local 
+from fabric.api import local
 
 env.hosts = ["34.75.191.53", "3.94.192.73"]
 
@@ -25,6 +26,7 @@ def do_pack():
     if local("tar -cvzf {} web_static".format(file)).failed is True:
         return None
     return file
+
 
 def do_deploy(archive_path):
     """
@@ -60,6 +62,7 @@ def do_deploy(archive_path):
            format(name_file)).failed is True:
         return False
     return True
+
 
 def deploy():
     """ Function that creates and distributes an archive to your web servers"""
