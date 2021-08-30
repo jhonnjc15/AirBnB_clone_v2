@@ -6,6 +6,7 @@ import os
 from fabric.api import env
 from fabric.api import lcd
 from fabric.api import run
+from fabric.api import local
 
 
 env.hosts = ["34.75.191.53", "3.94.192.73"]
@@ -22,9 +23,9 @@ def do_clean(number=0):
 
     [archives.pop() for i in range(number)]
     with lcd("versions"):
-        [run("rm ./{}".format(a)) for a in archives]
+        [local("rm ./{}".format(a)) for a in archives]
 
-    with lcd("/data/web_static/releases"):
+    with cd("/data/web_static/releases"):
         archives = run("ls -tr").split()
         archives = [a for a in archives if "web_static_" in a]
         [archives.pop() for i in range(number)]
