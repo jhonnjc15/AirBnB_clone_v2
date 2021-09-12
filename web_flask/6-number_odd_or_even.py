@@ -52,9 +52,9 @@ def template_number_odd_even(n):
        With a differente message if n is even or odd
     """
     if n % 2 == 0:
-        message = " {} is even".format(n)
+        message = "{} is even".format(n)
     else:
-        message = " {} is odd".format(n)
+        message = "{} is odd".format(n)
     return render_template('6-number_odd_or_even.html', message_key=message)
 
 
