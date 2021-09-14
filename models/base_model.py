@@ -10,6 +10,7 @@ from os import getenv
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
 
