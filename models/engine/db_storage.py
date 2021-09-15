@@ -18,6 +18,7 @@ from sqlalchemy.orm import sessionmaker
 classes = {"City": City, "State": State, "User": User,
            "Place": Place, "Review": Review, "Amenity": Amenity}
 
+
 class DBStorage:
     """Represents a database storage engine.
     Attributes:
@@ -30,10 +31,11 @@ class DBStorage:
 
     def __init__(self):
         """Initialize a new DBStorage instance."""
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(getenv("HBNB_MYSQL_USER"),
-                                             getenv("HBNB_MYSQL_PWD"),
-                                             getenv("HBNB_MYSQL_HOST"),
-                                             getenv("HBNB_MYSQL_DB")),
+        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}"
+                                      .format(getenv("HBNB_MYSQL_USER"),
+                                              getenv("HBNB_MYSQL_PWD"),
+                                              getenv("HBNB_MYSQL_HOST"),
+                                              getenv("HBNB_MYSQL_DB")),
                                       pool_pre_ping=True)
         if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
@@ -48,7 +50,7 @@ class DBStorage:
                     key = obj.__class__.__name__ + '.' + obj.id
                     dictionary[key] = obj
         return (dictionary)
-	
+
     def new(self, obj):
         """Add obj to the current database session."""
         self.__session.add(obj)
