@@ -21,11 +21,10 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """
-            returns the list of City instances with state_id equals
-            to the current State.id
+            Returns the list of City instances with a condition
             """
             list_city = []
-            for city in models.storage.all(City).values():
+            for city in list(models.storage.all(City).values()):
                 if city.state_id == self.id:
                     list_city.append(city)
             return list_city
