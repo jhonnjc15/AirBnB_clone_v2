@@ -17,7 +17,8 @@ def close(exc):
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
     """
-    List of all State and City objects present in DBStorage sorted by name (A->Z)
+    List of all State and City objects present in
+    DBStorage sorted by name (A->Z)
     """
     states = storage.all("State")
     return render_template("8-cities_by_states.html", states_key=states)
